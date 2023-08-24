@@ -1,0 +1,7 @@
+{
+  "jwtPrivateKey": "unsecureKey",
+  "db": "mongodb+srv://karan5ipsvig:password123abc@cluster0.yar2cct.mongodb.net/codeswear?retryWrites=true&w=majority",
+  "port": "3900",
+  "requiresAuth": true,
+  "api_key": "9ac40293-11f2-11ee-addf-0200cd936042"
+}
