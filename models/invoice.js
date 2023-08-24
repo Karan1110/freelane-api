@@ -22,6 +22,8 @@ const invoiceSchema = new mongoose.Schema(
       ref: "User",
     },
     image: String,
+    file: Buffer,
+    contentType: String,
   },
   {
     timestamps: true,

@@ -6,18 +6,7 @@ const router = express.Router()
 const path = require("path")
 const multer = require("multer")
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const p = path.join(__dirname, "../", "./uploads")
-    cb(null, p)
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9)
-    const fileExtension = path.extname(file.originalname)
-    cb(null, `${uniqueSuffix}${fileExtension}`)
-  },
-})
-
+const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
 router.get("/", [auth], async (req, res) => {
@@ -48,7 +37,8 @@ router.post("/", [auth, upload.single("image")], async (req, res) => {
       quantity,
       name,
       user: req.user._id,
-      image: req.file.filename,
+      file: req.file.buffer,
+      contentType: req.file.mimetype,
     })
 
     await invoice.save()
